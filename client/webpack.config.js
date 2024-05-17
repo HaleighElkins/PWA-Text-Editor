@@ -3,66 +3,63 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
-module.exports = () => {
-  return {
-    mode: 'development',
-    entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js'
-    },
-    output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './index.html',
-        title: 'Text Editor'
-      }),
-      new InjectManifest({
-        swSrc: './src-sw.js',
-        swDest: 'src-sw.js',
-      }),
-      new WebpackPwaManifest({
-        fingerprints: false,
-        inject: true,
-        name: 'Text Editor',
-        short_name: "Jate",
-        description: 'Editing Text!',
-        background_color: '#4600BB',
-        theme_color: '#4600BB',
-        start_url: './',
-        publicPath: './',
-        icons: [
-          {
-            src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('assets', 'icons'),
-          },
-        ],
-      }),
-    ],
-    module: {
-      rules: [
+module.exports = {
+  mode: 'development',
+  entry: {
+    // HAd to move these two files to the main client folder. I had so many bugs trying to run via the src folder. I kept getting errors after errors. 
+    main: './index.js', 
+    install: './install.js' 
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'client'), // Updated path to the client directory. I had to move the main.bundle.js to the client folder. Had so so so many bugs trying to run through other folders.
+  },  
+  
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html', // Path to the HTML template file
+      title: 'Text Editor'
+    }),
+    new InjectManifest({
+      swSrc: './src-sw.js', // Path to the service worker file
+      swDest: 'sw.js',
+    }),
+    new WebpackPwaManifest({
+      fingerprints: false,
+      inject: true,
+      name: 'Text Editor',
+      short_name: "Jate",
+      description: 'Editing Text!',
+      background_color: '#4600BB',
+      theme_color: '#4600BB',
+      start_url: './',
+      publicPath: './',
+      icons: [
         {
-          test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
-            },
-          },
+          src: './src/images/logo.png', // Path to the logo image
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('assets', 'icons'),
         },
       ],
-    },
-  };
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+          },
+        },
+      },
+    ],
+  },
 };
