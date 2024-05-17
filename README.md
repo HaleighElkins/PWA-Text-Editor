@@ -1,6 +1,11 @@
 # PWA-Text-Editor
 Live URL: https://pwa-text-editor-n3d7.onrender.com/
 
+I had a lot of issues with this challenge. I had to restart at least 3 times. 
+This is my third repo with a lot of my older code that I saved. 
+Finally got it to work. My paths were just not working using the src folder. Kept getting so so many errors. 
+Had to place a lot of the folders into the client folder instead. Not a very clean/organized code for me this time around. 
+
 
 ## Description: 
 
