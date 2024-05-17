@@ -18,7 +18,10 @@ You can download this PSA to have offline to use for notes or coding on your own
 
 ## Visuals
 
-
+![Screenshot 2024-05-16 212422](https://github.com/HaleighElkins/PWA-Text-Editor/assets/152942336/74bc4698-0ddb-41f2-bdee-d789ee9a77c8)
+![Screenshot 2024-05-16 212434](https://github.com/HaleighElkins/PWA-Text-Editor/assets/152942336/af6b5a83-c337-45a5-9d5a-ed0d95e290d0)
+![Screenshot 2024-05-16 212441](https://github.com/HaleighElkins/PWA-Text-Editor/assets/152942336/f16553a4-c37e-427c-9497-cb978ce19cfe)
+![Screenshot 2024-05-16 212448](https://github.com/HaleighElkins/PWA-Text-Editor/assets/152942336/06e1582d-a283-4c22-b606-ef6e6235f72d)
 
 
  ## Credits 
