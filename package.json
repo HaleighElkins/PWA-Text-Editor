@@ -2,14 +2,14 @@
   "name": "JATE",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/server.js", 
   "scripts": {
-    "start:dev": "",
-    "start": "",
-    "server": "",
-    "build": "",
-    "install": "",
-    "client": ""
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/server.js", 
+    "build": "cd client && npm run build",
+    "install": "cd client && npm install --omit=dev",
+    "client": "cd client && npm run dev"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "cross-env": "^7.0.3"
   }
 }
